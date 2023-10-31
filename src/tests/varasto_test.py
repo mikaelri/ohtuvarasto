@@ -39,56 +39,56 @@ class TestVarasto(unittest.TestCase):
         # varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         self.assertAlmostEqual(self.varasto.paljonko_mahtuu(), 4)
 
-        # lisätesti
+        # lisätty testi
     def test_konstruktori_luo_tyhjan_varaston_positiivinen(self):
         self.pos = Varasto(7, 8) #alustetaan tilavuus < saldo
         self.assertAlmostEqual(self.pos.saldo, 7) #ei voi olla kuin maksimissaan tilavuus
         self.assertAlmostEqual(self.pos.tilavuus, 7) #ei voi olla kuin maksimissaan tilavuus
 
-        # lisätesti
+        # lisätty testi
     def test_konstruktori_luo_tyhjan_varaston_negatiivinen(self):
         self.neg = Varasto(-1, -1) #alustetaan negatiivisella tilavuudella ja saldolla
         self.assertAlmostEqual(self.neg.saldo, 0) #ei voi olla neg.
         self.assertAlmostEqual(self.neg.tilavuus, 0) #ei voi olla neg.
 
-        # lisätesti
+        # lisätty testi
     def test_ei_voi_ottaa_yli_tilavuuden(self):
         maara = self.varasto.ota_varastosta(self.varasto.saldo + 2) #koitetaan ottaa 2 yksikköä yli
         self.assertAlmostEqual(maara, self.varasto.saldo)
 
-        # lisätesti
+        # lisätty testi
     def test_negatiivinen_lisays_ei_lisaa_varastoa(self):
         alkusaldo = self.varasto.saldo #asetetaan aluksi 10
         self.varasto.lisaa_varastoon(-1) #koitetaan lisätä neg. saldo
         self.assertAlmostEqual(self.varasto.saldo, alkusaldo) 
 
-        # lisätesti
+        # lisätty testi
     def test_tilavuus_ei_mene_yli_saldon(self):
         self.varasto.lisaa_varastoon(self.varasto.tilavuus + 30) #koitetaan lisätä 30 yksikkiöä yli
         self.assertAlmostEqual(self.varasto.saldo, self.varasto.tilavuus)
 
-        # lisätesti
+        # lisätty testi
     def test_negatiivinen_maara_ei_lisaa_varastoa(self):
         self.varasto.lisaa_varastoon(-2) #koitetaan lisätä -2 yksikkö 
         self.assertAlmostEqual(self.varasto.saldo, 0)
 
-        # lisätesti
+        # lisätty testi
     def test_negatiivinen_ottaminen_palauttaa_oikean_saldon(self):
         self.varasto.lisaa_varastoon(8) # lisäyksen jälkeen varastossa on 8
         self.varasto.ota_varastosta(-2) #otettu määrä on -2
         self.assertAlmostEqual(self.varasto.saldo, 8)
 
-        # lisätesti
+        # lisätty testi
     def test_positiivinen_ottaminen_palauttaa_oikean_saldon(self):        
         self.varasto.lisaa_varastoon(8) #lisäyksen jälkeen varastossa 8
         self.varasto.ota_varastosta(2) # otetaan 2 yksikköä pois
         self.assertAlmostEqual(self.varasto.saldo, 6)
         
-        # lisätesti
+        # lisätty testi
     def test_saldo_ei_ylitä_tilavuutta(self):
         self.varasto.lisaa_varastoon(self.varasto.tilavuus + 30) #koitetaan lisätä yli max tilav.
         self.assertAlmostEqual(self.varasto.saldo, self.varasto.tilavuus)
 
-        # lisätesti
+        # lisätty testi
     def test_str(self):
         self.assertEqual(str(self.varasto), str(Varasto(10)))
