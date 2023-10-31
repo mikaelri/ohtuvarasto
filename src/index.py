@@ -1,6 +1,5 @@
 from varasto import Varasto
 
-#jeps
 
 def main():
     mehua = Varasto(100.0)
